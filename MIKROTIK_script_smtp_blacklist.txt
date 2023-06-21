@@ -1,0 +1,20 @@
+ip firewall address-list
+:local update do={
+:do {
+:local data ([:tool fetch url=$url output=user as-value]->"data")
+:local array [find dynamic list=_addr_smtp_blacklist]
+:foreach value in=$array do={:set array (array,[get $value address])}
+:while ([:len $data]!=0) do={
+:if ([:pick $data 0 [:find $data "\n"]]~"^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}") do={
+:local ip ([:pick $data 0 [:find $data $delimiter]].$cidr)
+:do {add list=_addr_smtp_blacklist address=$ip comment=$description} on-error={
+:do {set ($array->([:find $array $ip]-[:len $array]/2))} on-error={}
+}
+}
+:set data [:pick $data ([:find $data "\n"]+1) [:len $data]]
+}
+} on-error={:log warning "Address list <$description> update failed"}
+}
+$update url=https://raw.githubusercontent.com/akrland/security/main/_addr_smtp_blacklist_1.txt description="_addr_smtp_blacklist" delimiter=("\n")
+$update url=https://raw.githubusercontent.com/akrland/security/main/_addr_smtp_blacklist_2.txt description="_addr_smtp_blacklist" delimiter=("\n")
+$update url=https://raw.githubusercontent.com/akrland/security/main/_addr_smtp_blacklist_3.txt description="_addr_smtp_blacklist" delimiter=("\n")
