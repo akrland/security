@@ -1,2 +1,2 @@
 178.33.235.90 #freepascal.org
-mail.gramedia.com #mail.gramedia.com
+202.146.0.164 #mail.gramedia.com
