@@ -1,3 +1,7 @@
 178.33.235.90 #freepascal.org
 202.146.0.164 #mail.gramedia.com
 123.100.226.19 #apindojatim.com
+185.199.108.133 #raw.github.com
+185.199.109.133 #raw.github.com
+185.199.110.133 #raw.github.com
+185.199.111.133 #raw.github.com
