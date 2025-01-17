@@ -13,4 +13,4 @@
 103.157.83.144/30                   #fibernet_gresik
 103.210.123.112/29                  #jmn_manado_novotel
 119.252.167.96/29                   #icon_gresik
-182.253.212.0                       #biznet_jakarta
+182.253.212.0/30                    #biznet_jakarta
